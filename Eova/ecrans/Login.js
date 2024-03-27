@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { View, TextInput, Button, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, TextInput, Button, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import {Text } from 'react-native-paper';
 import { Card } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';

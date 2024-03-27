@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, Button, StyleSheet } from 'react-native';
+import { View, FlatList, Button, StyleSheet } from 'react-native';
+import {Text } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { api_url } from '../helpers/api_url';
+import { ActivityIndicator } from 'react-native-paper';
 
-const Planning = () => {
+const Planning = ({ navigation }) => {
   const [planning, setPlanning] = useState([]);
   const [refreshInterval, setRefreshInterval] = useState(500);
 
@@ -35,6 +37,21 @@ const Planning = () => {
     return () => clearInterval(intervalId);
   }, [refreshInterval]); // Inclure refreshInterval dans la liste des dépendances pour s'assurer que l'intervalle est mis à jour
 
+  const handleAssignPress = async (item) => {
+    // Utilisez item et autreParametre comme nécessaire
+    console.log('Item:', item.id_devis);
+    const response = await fetch(api_url + '/planning/Details/' + item.id_devis);
+    const data = await response.json();
+    console.log('data' ,data);
+    navigation.navigate('DetailsView', {
+      selectedItem: item,
+      details: data, // Passer les données à l'écran DetailsView
+    });
+    
+    // console.log('Autre paramètre:', autreParametre);
+    // ... le reste du code de gestion
+  };
+
   const renderItem = ({ item }) => {
     const dateLivraison = new Date(item.date_livraison);
     const formattedDate = dateLivraison.toLocaleDateString('fr-FR');
@@ -56,10 +73,7 @@ const Planning = () => {
   if (!planning || planning.length === 0) {
     return (
       <View style={styles.row}>
-        <Text style={styles.cell}>---------------</Text>
-        <Text style={styles.cell}>---------------</Text>
-        <Text style={styles.cell}>---------------</Text>
-        <Text style={styles.cell}>---------------</Text>
+        <ActivityIndicator size="large" color="#0000ff" style={{ textAlign: 'center' }} />
       </View>
     );
   }

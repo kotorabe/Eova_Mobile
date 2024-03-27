@@ -1,10 +1,10 @@
 // Welcome.js
 import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { api_url } from '../helpers/api_url';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ActivityIndicator } from 'react-native';
-
+import {Text } from 'react-native-paper';
 const Welcome = ({ navigation }) => {
   const [apiData, setApiData] = useState(null);
   const [equipeIdFromStorage, setEquipeIdFromStorage] = useState(null);

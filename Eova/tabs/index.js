@@ -6,7 +6,7 @@ import Profile from '../ecrans/Profile';
 import Planning from '../ecrans/Planning';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
-
+import Details from '../ecrans/Planning/Details';
 
 const Tabs = () => {
 
@@ -65,7 +65,7 @@ const Tabs = () => {
       </Tab.Screen> */}
       <Tab.Screen
         name="Livraison"
-        component={Welcome}
+        component={Details}
         options={{
           tabBarLabel: 'Livraison',
           tabBarIcon: ({ color, size }) => (
